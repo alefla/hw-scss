@@ -1,0 +1,81 @@
+// Idealy I would create scss file just contain all of @mixin then @import/@use it here(module/reusable), I am practicing mixin /not overcomplicate them :)
+
+$color-primary: #eecccc; //pinkish
+$color-secondary: #2f2828; //dark grey
+@mixin bg-light {
+  background-color: $color-primary;
+  color: $color-secondary;
+}
+@mixin bg-dark {
+  background-color: $color-secondary;
+  color: $color-primary;
+}
+@mixin bg-full-primary {
+  width: 100%;
+  background-color: $color-primary;
+}
+@mixin bg-full-secondary {
+  width: 100%;
+  background-color: #fbf4f4;
+}
+@mixin fl-left-sml {
+  float: left;
+  width: 25%;
+}
+@mixin fl-left-lg {
+  float: left;
+  width: 50%;
+}
+@mixin li-btn {
+  display: inline-block;
+  width: calculateRem(160);
+  margin-right: calculateRem(3.2);
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+@function calculateRem($size) {
+  $remSize: $size/ 16;
+  @return #{$remSize}rem;
+}
+
+.wrapper {
+  @include bg-full-primary;
+  font-size: calculateRem(19.2);
+}
+.header {
+  width: 100%;
+  h1 {
+    font-size: calculateRem(40);
+    color: $color-secondary;
+  }
+}
+.nav {
+  @include bg-full-secondary;
+  font-size: calculateRem(16);
+  padding: calculateRem(3.2);
+  ul {
+    li {
+      @include li-btn;
+      @include bg-light;
+    }
+  }
+}
+.col1 {
+  @include fl-left-lg;
+  @include bg-dark;
+}
+.col2 {
+  @include fl-left-sml;
+  @include bg-light;
+  h2 {
+    color: black;
+  }
+}
+.col3 {
+  @include fl-left-sml;
+  @include bg-dark;
+}
+.footer {
+  @include bg-full-primary;
+  font-size: calculateRem(14.4);
+}
